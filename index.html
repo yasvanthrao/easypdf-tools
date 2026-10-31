@@ -1,1048 +1,746 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="google-site-verification" content="q2Kp0bfWr880ibkUZrfXlxP5cRVdqS4v-GBk12slOc8">
-
-<meta name="description" content="EasyPDF Tools offers free online PDF and image tools. Merge PDF files, split PDF pages, convert JPG to PDF, compress images and resize images easily.">
-
-<meta name="robots" content="index, follow">
-
-<meta name="theme-color" content="#e5322d">
-
-<link rel="canonical" href="https://easypdf-tools-6zo.pages.dev/">
-
-<meta property="og:title" content="EasyPDF Tools - Free Online PDF and Image Tools">
-<meta property="og:description" content="Merge, split, convert, compress and resize files with free online tools.">
-<meta property="og:url" content="https://easypdf-tools-6zo.pages.dev/">
-<meta property="og:type" content="website">
-
-<title>EasyPDF Tools - Free PDF Merger, Splitter and Image Tools</title>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "EasyPDF Tools",
-  "url": "https://easypdf-tools-6zo.pages.dev/",
-  "description": "Free online PDF and image tools for merging, splitting, converting, compressing and resizing files.",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Any",
-  "browserRequirements": "Requires JavaScript and a modern web browser",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  }
-}
-</script>
-
-<style>
-
-:root {
-    --red: #e5322d;
-    --dark: #252525;
-    --muted: #666;
-    --line: #e8e8e8;
-    --bg: #f7f7f7;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    color: var(--dark);
-    background: var(--bg);
-    line-height: 1.6;
-}
-
-header {
-    padding: 22px 16px;
-    text-align: center;
-    background: white;
-    border-bottom: 1px solid var(--line);
-}
-
-.brand {
-    font-size: 27px;
-    font-weight: 800;
-    color: var(--red);
-    text-decoration: none;
-}
-
-header p {
-    margin: 8px 0 0;
-    color: var(--muted);
-    font-size: 14px;
-}
-
-main {
-    max-width: 900px;
-    margin: 26px auto;
-    padding: 0 16px;
-}
-
-h1 {
-    text-align: center;
-    font-size: 28px;
-    margin: 10px 0;
-    line-height: 1.3;
-}
-
-.intro {
-    text-align: center;
-    color: var(--muted);
-    margin-bottom: 24px;
-}
-
-.tools-nav {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-.tools-nav button {
-    border: 1px solid var(--line);
-    background: white;
-    padding: 11px 14px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.tools-nav button.active {
-    background: var(--red);
-    color: white;
-    border-color: var(--red);
-}
-
-.tool {
-    display: none;
-    background: white;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 22px;
-    box-shadow: 0 4px 18px #00000008;
-}
-
-.tool.active {
-    display: block;
-}
-
-.tool h2 {
-    margin-top: 0;
-}
-
-.tool-desc {
-    color: var(--muted);
-    margin-bottom: 20px;
-}
-
-.upload {
-    border: 2px dashed #ccc;
-    border-radius: 12px;
-    padding: 28px 14px;
-    text-align: center;
-    background: white;
-}
-
-.upload .icon {
-    font-size: 38px;
-    margin-bottom: 8px;
-}
-
-.upload strong {
-    display: block;
-    font-size: 18px;
-    margin-bottom: 8px;
-}
-
-.upload p {
-    color: var(--muted);
-    font-size: 14px;
-}
-
-input[type=file] {
-    display: block;
-    width: 100%;
-    margin: 12px auto;
-}
-
-.primary {
-    background: var(--red);
-    border: 0;
-    color: white;
-    padding: 14px 22px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 16px;
-    width: 100%;
-    max-width: 300px;
-}
-
-.secondary {
-    background: white;
-    border: 1px solid #ccc;
-    padding: 10px 14px;
-    border-radius: 7px;
-    cursor: pointer;
-}
-
-button:disabled {
-    opacity: .5;
-    cursor: not-allowed;
-}
-
-.field {
-    margin: 17px 0;
-}
-
-.field label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 7px;
-}
-
-.field input[type=text],
-.field input[type=number] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-    font-size: 16px;
-}
-
-.hint {
-    color: var(--muted);
-    font-size: 13px;
-    margin-top: 7px;
-}
-
-.status {
-    margin-top: 15px;
-    min-height: 20px;
-    font-size: 14px;
-    overflow-wrap: anywhere;
-}
-
-.status.error {
-    color: #c62828;
-}
-
-.status.success {
-    color: #16803c;
-}
-
-.file-list {
-    margin-top: 15px;
-    display: grid;
-    gap: 9px;
-}
-
-.file-card {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border: 1px solid var(--line);
-    padding: 11px;
-    border-radius: 9px;
-    background: white;
-}
-
-.file-info {
-    flex: 1;
-    min-width: 0;
-    overflow-wrap: anywhere;
-}
-
-.actions {
-    display: flex;
-    gap: 5px;
-}
-
-.actions button {
-    border: 1px solid var(--line);
-    background: white;
-    padding: 7px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.add-row {
-    text-align: center;
-    margin-top: 12px;
-}
-
-/* SEO CONTENT */
-
-.content-section {
-    background: white;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 24px;
-    margin-top: 25px;
-    box-shadow: 0 4px 18px #00000008;
-}
-
-.content-section h2 {
-    color: var(--dark);
-    margin-top: 20px;
-}
-
-.content-section h2:first-child {
-    margin-top: 0;
-}
-
-.content-section h3 {
-    font-size: 17px;
-    margin-top: 20px;
-}
-
-.content-section p {
-    color: #555;
-}
-
-footer {
-    text-align: center;
-    padding: 25px 12px;
-    margin-top: 35px;
-    border-top: 1px solid var(--line);
-    font-size: 13px;
-    color: var(--muted);
-    background: white;
-}
-
-footer a {
-    color: #555;
-    text-decoration: none;
-    margin: 0 8px;
-}
-
-footer a:hover {
-    color: var(--red);
-}
-
-@media(max-width:520px) {
-
-    main {
-        margin-top: 18px;
-    }
-
-    .tool {
-        padding: 16px;
-    }
-
-    .content-section {
-        padding: 17px;
-    }
-
-    .tools-nav button {
-        font-size: 13px;
-        padding: 9px;
-    }
-
-    .file-card {
-        align-items: flex-start;
-    }
-
-}
-
-</style>
-</head>
-
-<body>
-
-<header>
-<a class="brand" href="./">EasyPDF Tools</a>
-<p>Simple, Free PDF and Image Tools</p>
-</header>
-
-<main>
-
-<h1>Free Online PDF and Image Tools</h1>
-
-<p class="intro">
-Use EasyPDF Tools to merge, split, convert, compress and resize files.
-Free online tools that work directly in your browser.
-</p>
-
-<nav class="tools-nav">
-
-<button class="active" data-tool="merge">Merge PDF</button>
-<button data-tool="split">Split PDF</button>
-<button data-tool="jpg">JPG to PDF</button>
-<button data-tool="compress">Image Compressor</button>
-<button data-tool="resize">Image Resizer</button>
-
-</nav>
-
-<!-- MERGE PDF -->
-
-<section class="tool active" id="merge">
-
-<h2>Merge PDF</h2>
-
-<p class="tool-desc">
-Combine multiple PDF files into one PDF document.
-</p>
-
-<div class="upload">
-<div class="icon">📄</div>
-<strong>Select PDF Files</strong>
-<input type="file" id="mergeFiles" accept=".pdf,application/pdf" multiple>
-</div>
-
-<div id="mergeList" class="file-list"></div>
-
-<div class="add-row">
-<button class="secondary" id="addMoreMerge">+ Add More Files</button>
-</div>
-
-<button class="primary" id="mergeBtn">Merge PDF</button>
-
-<div class="status" id="mergeStatus"></div>
-
-</section>
-
-<!-- SPLIT PDF -->
-
-<section class="tool" id="split">
-
-<h2>Split PDF</h2>
-
-<p class="tool-desc">
-Extract individual pages or multiple page ranges from your PDF.
-</p>
-
-<div class="upload">
-<div class="icon">📑</div>
-<strong>Select PDF File</strong>
-<input type="file" id="splitFile" accept=".pdf,application/pdf">
-</div>
-
-<div class="field">
-
-<label for="pageRange">Pages to Extract</label>
-
-<input type="text" id="pageRange" placeholder="Example: 1-3,5,7-9">
-
-<div class="hint">
-Examples: 1 | 1-3 | 1,3,5 | 1-3,5,7-9
-</div>
-
-</div>
-
-<button class="primary" id="splitBtn">Split PDF</button>
-
-<div class="status" id="splitStatus"></div>
-
-</section>
-
-<!-- JPG TO PDF -->
-
-<section class="tool" id="jpg">
-
-<h2>JPG to PDF</h2>
-
-<p class="tool-desc">
-Convert JPG and PNG images into a PDF document.
-</p>
-
-<div class="upload">
-<div class="icon">🖼️</div>
-<strong>Select Images</strong>
-<input type="file" id="jpgFiles" accept="image/jpeg,image/png" multiple>
-</div>
-
-<div id="jpgList" class="file-list"></div>
-
-<button class="primary" id="jpgBtn">Convert to PDF</button>
-
-<div class="status" id="jpgStatus"></div>
-
-</section>
-
-<!-- IMAGE COMPRESSOR -->
-
-<section class="tool" id="compress">
-
-<h2>Image Compressor</h2>
-
-<p class="tool-desc">
-Reduce image file size by adjusting image quality.
-</p>
-
-<div class="upload">
-<div class="icon">🗜️</div>
-<strong>Select Image</strong>
-<input type="file" id="compressFile" accept="image/*">
-</div>
-
-<div class="field">
-
-<label>
-Image Quality: <span id="qualityValue">70%</span>
-</label>
-
-<input type="range" id="quality" min="10" max="95" value="70" style="width:100%">
-
-</div>
-
-<button class="primary" id="compressBtn">Compress Image</button>
-
-<div class="status" id="compressStatus"></div>
-
-</section>
-
-<!-- IMAGE RESIZER -->
-
-<section class="tool" id="resize">
-
-<h2>Image Resizer</h2>
-
-<p class="tool-desc">
-Resize images to your preferred dimensions in pixels.
-</p>
-
-<div class="upload">
-<div class="icon">📐</div>
-<strong>Select Image</strong>
-<input type="file" id="resizeFile" accept="image/*">
-</div>
-
-<div class="field">
-
-<label for="resizeWidth">Width (pixels)</label>
-
-<input type="number" id="resizeWidth" min="1" max="10000" placeholder="Enter width">
-
-</div>
-
-<div class="field">
-
-<label for="resizeHeight">Height (pixels)</label>
-
-<input type="number" id="resizeHeight" min="1" max="10000" placeholder="Enter height">
-
-</div>
-
-<button class="primary" id="resizeBtn">Resize Image</button>
-
-<div class="status" id="resizeStatus"></div>
-
-</section>
-
-<!-- SEO CONTENT -->
-
-<section class="content-section">
-
-<h2>Free Online PDF and Image Tools</h2>
-
-<p>
-Welcome to EasyPDF Tools. Our website provides simple online tools
-to help you manage PDF documents and images. You can use these tools
-from your mobile phone, tablet or computer without installing
-additional software.
-</p>
-
-<h3>1. Merge PDF Files Online</h3>
-
-<p>
-The Merge PDF tool helps you combine multiple PDF documents into
-a single PDF file. Select two or more PDF files, arrange their order
-and click the Merge PDF button.
-</p>
-
-<h3>2. Split PDF Files Online</h3>
-
-<p>
-Use the Split PDF tool to extract selected pages from a PDF document.
-Enter individual page numbers or page ranges. For example, enter
-1-3,5 to extract pages 1, 2, 3 and 5.
-</p>
-
-<h3>3. Convert JPG to PDF</h3>
-
-<p>
-Convert JPG and PNG images into a PDF document. Select multiple
-images to place them into one PDF file.
-</p>
-
-<h3>4. Compress Images Online</h3>
-
-<p>
-The Image Compressor helps reduce image file size. Select an image
-and adjust the quality setting to create a smaller JPEG image.
-</p>
-
-<h3>5. Resize Images Online</h3>
-
-<p>
-Change the dimensions of an image using the Image Resizer.
-Enter your preferred width and height in pixels and download
-the resized image.
-</p>
-
-<h2>Frequently Asked Questions</h2>
-
-<h3>Are EasyPDF Tools free?</h3>
-
-<p>
-Yes. EasyPDF Tools provides free online PDF and image processing tools.
-</p>
-
-<h3>Do I need to install software?</h3>
-
-<p>
-No. You can use the tools directly in a modern web browser.
-</p>
-
-<h3>Can I use EasyPDF Tools on my mobile phone?</h3>
-
-<p>
-Yes. The website is designed to work on mobile phones,
-tablets and computers.
-</p>
-
-<h3>Can I merge multiple PDF files?</h3>
-
-<p>
-Yes. Select two or more PDF files and use the Merge PDF tool
-to combine them into one document.
-</p>
-
-<h3>Can I extract specific PDF pages?</h3>
-
-<p>
-Yes. Use the Split PDF tool and enter the page numbers
-or ranges you want to extract.
-</p>
-
-<h3>Are my files uploaded to a server?</h3>
-
-<p>
-The tools on this page process files in your browser using
-JavaScript. The website does not send your selected files
-to its own server for processing.
-</p>
-
-</section>
-
-</main>
-
-<footer>
-
-<div>
-<a href="about.html">About Us</a> |
-<a href="privacy.html">Privacy Policy</a> |
-<a href="contact.html">Contact Us</a>
-</div>
-
-<p>© 2026 EasyPDF Tools. All rights reserved.</p>
-
-</footer>
-
-<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-
-<script>
-
-'use strict';
-
-const $ = id => document.getElementById(id);
-
-function status(id, message, type = '') {
-    const el = $(id);
-    el.textContent = message;
-    el.className = 'status ' + type;
-}
-
-function bytes(n) {
-    return n < 1024 ? n + ' B' :
-    n < 1048576 ? (n / 1024).toFixed(1) + ' KB' :
-    (n / 1048576).toFixed(2) + ' MB';
-}
-
-function downloadBlob(blob, name) {
-
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement('a');
-
-    a.href = url;
-    a.download = name;
-
-    document.body.appendChild(a);
-
-    a.click();
-    a.remove();
-
-    setTimeout(() => URL.revokeObjectURL(url), 10000);
-}
-
-function requirePdfLib() {
-
-    if (!window.PDFLib) {
-        throw new Error('PDF library failed to load. Check your internet connection and refresh.');
-    }
-
-}
-
-// NAVIGATION
-
-document.querySelectorAll('.tools-nav button').forEach(btn => {
-
-    btn.addEventListener('click', () => {
-
-        document.querySelectorAll('.tools-nav button').forEach(b => {
-            b.classList.toggle('active', b === btn);
-        });
-
-        document.querySelectorAll('.tool').forEach(s => {
-            s.classList.toggle('active', s.id === btn.dataset.tool);
-        });
-
-    });
-
-});
-
-// MERGE PDF
-
-let mergeArray = [];
-
-function renderMerge() {
-
-    const list = $('mergeList');
-
-    list.innerHTML = '';
-
-    mergeArray.forEach((file, i) => {
-
-        const row = document.createElement('div');
-
-        row.className = 'file-card';
-
-        const info = document.createElement('div');
-
-        info.className = 'file-info';
-
-        info.textContent =
-            (i + 1) + '. ' + file.name + ' (' + bytes(file.size) + ')';
-
-        const actions = document.createElement('div');
-
-        actions.className = 'actions';
-
-        const up = document.createElement('button');
-
-        up.textContent = '↑';
-
-        up.disabled = i === 0;
-
-        up.onclick = () => {
-
-            [mergeArray[i - 1], mergeArray[i]] =
-            [mergeArray[i], mergeArray[i - 1]];
-
-            renderMerge();
-
-        };
-
-        const down = document.createElement('button');
-
-        down.textContent = '↓';
-
-        down.disabled = i === mergeArray.length - 1;
-
-        down.onclick = () => {
-
-            [mergeArray[i + 1], mergeArray[i]] =
-            [mergeArray[i], mergeArray[i + 1]];
-
-            renderMerge();
-
-        };
-
-        const remove = document.createElement('button');
-
-        remove.textContent = '×';
-
-        remove.onclick = () => {
-
-            mergeArray.splice(i, 1);
-
-            renderMerge();
-
-        };
-
-        actions.append(up, down, remove);
-
-        row.append(info, actions);
-
-        list.appendChild(row);
-
-    });
-
-}
-
-$('mergeFiles').addEventListener('change', e => {
-
-    const selected = Array.from(e.target.files || []);
-
-    const pdfs = selected.filter(f =>
-        f.type === 'application/pdf' ||
-        f.name.toLowerCase().endsWith('.pdf')
-    );
-
-    pdfs.forEach(file => mergeArray.push(file));
-
-    renderMerge();
-
-    e.target.value = '';
-
-    status(
-        'mergeStatus',
-        pdfs.length ? 'PDF files added successfully.' : 'Please select PDF files.',
-        pdfs.length ? 'success' : 'error'
-    );
-
-});
-
-$('addMoreMerge').onclick = () => $('mergeFiles').click();
-
-$('mergeBtn').onclick = async () => {
-
-    if (mergeArray.length < 2) {
-
-        status('mergeStatus', 'Please select at least two PDF files.', 'error');
-
-        return;
-
-    }
-
-    try {
-
-        requirePdfLib();
-
-        $('mergeBtn').disabled = true;
-
-        status('mergeStatus', 'Merging PDF files...');
-
-        const output = await PDFLib.PDFDocument.create();
-
-        for (const file of mergeArray) {
-
-            const doc = await PDFLib.PDFDocument.load(
-                await file.arrayBuffer()
-            );
-
-            const pages = await output.copyPages(
-                doc,
-                doc.getPageIndices()
-            );
-
-            pages.forEach(page => output.addPage(page));
-
-        }
-
-        downloadBlob(
-            new Blob([await output.save()], {
-                type: 'application/pdf'
-            }),
-            'merged.pdf'
-        );
-
-        status('mergeStatus', 'PDF merged successfully!', 'success');
-
-    } catch (err) {
-
-        status('mergeStatus', err.message || 'Merge failed.', 'error');
-
-    } finally {
-
-        $('mergeBtn').disabled = false;
-
-    }
-
-};
-
-// SPLIT PDF
-
-$('splitBtn').addEventListener('click', async () => {
-
-    const file = $('splitFile').files[0];
-
-    const range = $('pageRange').value.trim();
-
-    const btn = $('splitBtn');
-
-    if (!file) {
-
-        status('splitStatus', 'Please select a PDF file.', 'error');
-
-        return;
-
-    }
-
-    if (!range) {
-
-        status('splitStatus', 'Enter pages such as 1-3 or 1,3,5.', 'error');
-
-        return;
-
-    }
-
-    try {
-
-        requirePdfLib();
-
-        btn.disabled = true;
-
-        status('splitStatus', 'Reading PDF...');
-
-        const source = await PDFLib.PDFDocument.load(
-            await file.arrayBuffer()
-        );
-
-        const total = source.getPageCount();
-
-        const indexes = new Set();
-
-        for (const part of range.split(',')) {
-
-            const p = part.trim();
-
-            if (/^\d+$/.test(p)) {
-
-                indexes.add(Number(p));
-
-            } else if (/^\d+\s*-\s*\d+$/.test(p)) {
-
-                let [start, end] = p.split('-').map(Number);
-
-                if (start > end) {
-                    [start, end] = [end, start];
-                }
-
-                if (start < 1 || end > total) {
-                    throw new Error('Page numbers must be between 1 and ' + total);
-                }
-
-                for (let n = start; n <= end; n++) {
-                    indexes.add(n);
-                }
-
-            } else {
-
-                throw new Error('Invalid format. Example: 1-3,5');
-
-            }
-
-        }
-
-        const pages = [...indexes].sort((a, b) => a - b);
-
-        if (!pages.length || pages.some(n => n < 1 || n > total)) {
-
-            throw new Error('Enter valid page numbers between 1 and ' + total);
-
-        }
-
-        status('splitStatus', 'Extracting pages...');
-
-        const output = await PDFLib.PDFDocument.create();
-
-        const copied = await output.copyPages(
-            source,
-            pages.map(n => n - 1)
-        );
-
-        copied.forEach(page => output.addPage(page));
-
-        const pdfBytes = await output.save();
-
-        downloadBlob(
-            new Blob([pdfBytes], {
-                type: 'application/pdf'
-            }),
-            'split-pages.pdf'
-        );
-
-        status(
-            'splitStatus',
-            'Success! ' + pages.length + ' pages extracted.',
-            'success'
-        );
-
-    } catch (err) {
-
-        console.error(err);
-
-        status(
-            'splitStatus',
-            err.message || 'Unable to split this PDF.',
-            'error'
-        );
-
-    } finally {
-
-        btn.disabled = false;
-
-    }
-
-});
-
-// JPG TO PDF
-
-$('jpgFiles').addEventListener('change', () => {
-
-    const files = Array.from($('jpgFiles').files || []);
-
-    const list = $('jpgList');
-
-    list.innerHTML = '';
-
-    files.forEach((file, i) => {
-
-        const row = document.createElement('div');
-
-        row.className = 'file-card';
-
-        row.textContent = (i + 1) + '. ' + file.name;
-
-        list.appendChild(row);
-
-    });
-
-});
-
-$('jpgBtn').onclick = async () => {
-
-    const files = Array.from($('jpgFiles').files || []);
-
-    if (!files.length) {
-
-        status('jpgStatus', 'Select JPG or PNG images.', 'error');
-
-        return;
-
-    }
-
-    try {
-
-        requirePdfLib();
-
-        $('jpgBtn').disabled = true;
-
-        const pdf = await PDFLib.PDFDocument.create();
-
-        for (const file of fil
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+    <meta name="google-site-verification" content="q2Kp0bfWr880ibkUZrfXlxP5cRVdqS4v-GBk12slOc8" />  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<meta name="description" content="EasyPDF Tools - Free online PDF and image tools. Merge, split, convert, compress and resize files.">  
+<meta name="theme-color" content="#e5322d">  <title>EasyPDF Tools - Free PDF Tools</title>  <style>  
+:root {  
+    --red: #e5322d;  
+    --dark: #252525;  
+    --muted: #666;  
+    --line: #e8e8e8;  
+    --bg: #f7f7f7;  
+}  
+  
+* {  
+    box-sizing: border-box;  
+}  
+  
+body {  
+    margin: 0;  
+    font-family: Arial, Helvetica, sans-serif;  
+    color: var(--dark);  
+    background: var(--bg);  
+}  
+  
+header {  
+    padding: 22px 16px;  
+    text-align: center;  
+    background: white;  
+    border-bottom: 1px solid var(--line);  
+}  
+  
+.brand {  
+    font-size: 27px;  
+    font-weight: 800;  
+    color: var(--red);  
+    text-decoration: none;  
+}  
+  
+header p {  
+    margin: 8px 0 0;  
+    color: var(--muted);  
+    font-size: 14px;  
+}  
+  
+main {  
+    max-width: 900px;  
+    margin: 26px auto;  
+    padding: 0 16px;  
+}  
+  
+h1 {  
+    text-align: center;  
+    font-size: 28px;  
+    margin: 10px 0;  
+}  
+  
+.intro {  
+    text-align: center;  
+    color: var(--muted);  
+    margin-bottom: 24px;  
+}  
+  
+.tools-nav {  
+    display: flex;  
+    gap: 8px;  
+    flex-wrap: wrap;  
+    justify-content: center;  
+    margin: 20px 0;  
+}  
+  
+.tools-nav button {  
+    border: 1px solid var(--line);  
+    background: white;  
+    padding: 11px 14px;  
+    border-radius: 8px;  
+    font-weight: bold;  
+    cursor: pointer;  
+}  
+  
+.tools-nav button.active {  
+    background: var(--red);  
+    color: white;  
+    border-color: var(--red);  
+}  
+  
+.tool {  
+    display: none;  
+    background: white;  
+    border: 1px solid var(--line);  
+    border-radius: 14px;  
+    padding: 22px;  
+    box-shadow: 0 4px 18px #00000008;  
+}  
+  
+.tool.active {  
+    display: block;  
+}  
+  
+.tool h2 {  
+    margin-top: 0;  
+}  
+  
+.tool-desc {  
+    color: var(--muted);  
+    margin-bottom: 20px;  
+}  
+  
+.upload {  
+    border: 2px dashed #ccc;  
+    border-radius: 12px;  
+    padding: 28px 14px;  
+    text-align: center;  
+    background: white;  
+}  
+  
+.upload .icon {  
+    font-size: 38px;  
+    margin-bottom: 8px;  
+}  
+  
+.upload strong {  
+    display: block;  
+    font-size: 18px;  
+    margin-bottom: 8px;  
+}  
+  
+.upload p {  
+    color: var(--muted);  
+    font-size: 14px;  
+}  
+  
+input[type=file] {  
+    display: block;  
+    width: 100%;  
+    margin: 12px auto;  
+}  
+  
+.primary {  
+    background: var(--red);  
+    border: 0;  
+    color: white;  
+    padding: 14px 22px;  
+    border-radius: 8px;  
+    font-weight: bold;  
+    cursor: pointer;  
+    margin-top: 16px;  
+    width: 100%;  
+    max-width: 300px;  
+}  
+  
+.secondary {  
+    background: white;  
+    border: 1px solid #ccc;  
+    padding: 10px 14px;  
+    border-radius: 7px;  
+    cursor: pointer;  
+}  
+  
+button:disabled {  
+    opacity: .5;  
+    cursor: not-allowed;  
+}  
+  
+.field {  
+    margin: 17px 0;  
+}  
+  
+.field label {  
+    display: block;  
+    font-weight: bold;  
+    margin-bottom: 7px;  
+}  
+  
+.field input[type=text],  
+.field input[type=number] {  
+    width: 100%;  
+    padding: 12px;  
+    border: 1px solid #ccc;  
+    border-radius: 7px;  
+    font-size: 16px;  
+}  
+  
+.hint {  
+    color: var(--muted);  
+    font-size: 13px;  
+    margin-top: 7px;  
+}  
+  
+.status {  
+    margin-top: 15px;  
+    min-height: 20px;  
+    font-size: 14px;  
+    overflow-wrap: anywhere;  
+}  
+  
+.status.error {  
+    color: #c62828;  
+}  
+  
+.status.success {  
+    color: #16803c;  
+}  
+  
+.file-list {  
+    margin-top: 15px;  
+    display: grid;  
+    gap: 9px;  
+}  
+  
+.file-card {  
+    display: flex;  
+    align-items: center;  
+    gap: 10px;  
+    border: 1px solid var(--line);  
+    padding: 11px;  
+    border-radius: 9px;  
+    background: white;  
+}  
+  
+.file-info {  
+    flex: 1;  
+    min-width: 0;  
+    overflow-wrap: anywhere;  
+}  
+  
+.actions {  
+    display: flex;  
+    gap: 5px;  
+}  
+  
+.actions button {  
+    border: 1px solid var(--line);  
+    background: white;  
+    padding: 7px 10px;  
+    border-radius: 6px;  
+    cursor: pointer;  
+}  
+  
+.add-row {  
+    text-align: center;  
+    margin-top: 12px;  
+}  
+  
+footer {  
+    text-align: center;  
+    padding: 25px 12px;  
+    margin-top: 35px;  
+    border-top: 1px solid var(--line);  
+    font-size: 13px;  
+    color: var(--muted);  
+    background: white;  
+}  
+  
+footer a {  
+    color: #555;  
+    text-decoration: none;  
+    margin: 0 8px;  
+}  
+  
+@media(max-width:520px) {  
+    main {  
+        margin-top: 18px;  
+    }  
+  
+    .tool {  
+        padding: 16px;  
+    }  
+  
+    .tools-nav button {  
+        font-size: 13px;  
+        padding: 9px;  
+    }  
+  
+    .file-card {  
+        align-items: flex-start;  
+    }  
+}  
+</style>  </head>  <body>  <header>  
+<a class="brand" href="./">EasyPDF Tools</a>  
+<p>Simple, Free PDF and Image Tools</p>  
+</header>  <main>  <h1>Free Online PDF Tools</h1>  
+<p class="intro">Choose your tool and process files directly in your browser.</p>  <nav class="tools-nav">  
+<button class="active" data-tool="merge">Merge PDF</button>  
+<button data-tool="split">Split PDF</button>  
+<button data-tool="jpg">JPG to PDF</button>  
+<button data-tool="compress">Image Compressor</button>  
+<button data-tool="resize">Image Resizer</button>  
+</nav>  <!-- MERGE PDF -->  <section class="tool active" id="merge">  <h2>Merge PDF</h2>  
+<p class="tool-desc">Combine multiple PDF files into one PDF.</p>  <div class="upload">  
+<div class="icon">📄</div>  
+<strong>Select PDF Files</strong>  
+<input type="file" id="mergeFiles" accept=".pdf,application/pdf" multiple>  
+</div>  <div id="mergeList" class="file-list"></div>  <div class="add-row">  
+<button class="secondary" id="addMoreMerge">+ Add More Files</button>  
+</div>  <button class="primary" id="mergeBtn">Merge PDF</button>
+
+<div class="status" id="mergeStatus"></div>  </section>  <!-- SPLIT PDF -->  <section class="tool" id="split">  <h2>Split PDF</h2>  
+<p class="tool-desc">Extract individual pages or multiple page ranges from your PDF.</p>  <div class="upload">  
+<div class="icon">📑</div>  
+<strong>Select PDF File</strong>  
+<input type="file" id="splitFile" accept=".pdf,application/pdf">  
+</div>  <div class="field">  
+<label for="pageRange">Pages to Extract</label>  
+<input type="text" id="pageRange" placeholder="Example: 1-3,5,7-9">  
+<div class="hint">  
+Examples: 1 | 1-3 | 1,3,5 | 1-3,5,7-9  
+</div>  
+</div>  <button class="primary" id="splitBtn">Split PDF</button>
+
+<div class="status" id="splitStatus"></div>  </section>  <!-- JPG TO PDF -->  <section class="tool" id="jpg">  <h2>JPG to PDF</h2>  
+<p class="tool-desc">Convert JPG and PNG images into PDF.</p>  <div class="upload">  
+<div class="icon">🖼️</div>  
+<strong>Select Images</strong>  
+<input type="file" id="jpgFiles" accept="image/jpeg,image/png" multiple>  
+</div>  <div id="jpgList" class="file-list"></div>  <button class="primary" id="jpgBtn">Convert to PDF</button>
+
+<div class="status" id="jpgStatus"></div>  </section>  <!-- IMAGE COMPRESSOR -->  <section class="tool" id="compress">  <h2>Image Compressor</h2>  
+<p class="tool-desc">Reduce image file size.</p>  <div class="upload">  
+<div class="icon">🗜️</div>  
+<strong>Select Image</strong>  
+<input type="file" id="compressFile" accept="image/*">  
+</div>  <div class="field">  
+<label>Image Quality: <span id="qualityValue">70%</span></label>  
+<input type="range" id="quality" min="10" max="95" value="70" style="width:100%">  
+</div>  <button class="primary" id="compressBtn">Compress Image</button>
+
+<div class="status" id="compressStatus"></div>  </section>  <!-- IMAGE RESIZER -->  <section class="tool" id="resize">  <h2>Image Resizer</h2>  
+<p class="tool-desc">Resize images to your preferred dimensions.</p>  <div class="upload">  
+<div class="icon">📐</div>  
+<strong>Select Image</strong>  
+<input type="file" id="resizeFile" accept="image/*">  
+</div>  <div class="field">  
+<label>Width (pixels)</label>  
+<input type="number" id="resizeWidth" min="1" max="10000" placeholder="Enter width">  
+</div>  <div class="field">  
+<label>Height (pixels)</label>  
+<input type="number" id="resizeHeight" min="1" max="10000" placeholder="Enter height">  
+</div>  <button class="primary" id="resizeBtn">Resize Image</button>
+
+<div class="status" id="resizeStatus"></div>  </section>  </main>  <footer>  
+<div>  
+<a href="about.html">About Us</a> |  
+<a href="privacy.html">Privacy Policy</a> |  
+<a href="contact.html">Contact Us</a>  
+</div>  
+<p>© 2026 EasyPDF Tools</p>  
+</footer>  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>  <script>  
+'use strict';  
+  
+const $ = id => document.getElementById(id);  
+  
+function status(id, message, type = '') {  
+    const el = $(id);  
+    el.textContent = message;  
+    el.className = 'status ' + type;  
+}  
+  
+function bytes(n) {  
+    return n < 1024 ? n + ' B' :  
+    n < 1048576 ? (n / 1024).toFixed(1) + ' KB' :  
+    (n / 1048576).toFixed(2) + ' MB';  
+}  
+  
+function downloadBlob(blob, name) {  
+    const url = URL.createObjectURL(blob);  
+    const a = document.createElement('a');  
+    a.href = url;  
+    a.download = name;  
+    document.body.appendChild(a);  
+    a.click();  
+    a.remove();  
+    setTimeout(() => URL.revokeObjectURL(url), 10000);  
+}  
+  
+function requirePdfLib() {  
+    if (!window.PDFLib) {  
+        throw new Error('PDF library failed to load. Check your internet connection and refresh.');  
+    }  
+}  
+  
+// NAVIGATION  
+  
+document.querySelectorAll('.tools-nav button').forEach(btn => {  
+    btn.addEventListener('click', () => {  
+        document.querySelectorAll('.tools-nav button').forEach(b =>  
+            b.classList.toggle('active', b === btn)  
+        );  
+  
+        document.querySelectorAll('.tool').forEach(s =>  
+            s.classList.toggle('active', s.id === btn.dataset.tool)  
+        );  
+    });  
+});  
+  
+// MERGE PDF  
+  
+let mergeArray = [];  
+  
+function renderMerge() {  
+    const list = $('mergeList');  
+    list.innerHTML = '';  
+  
+    mergeArray.forEach((file, i) => {  
+        const row = document.createElement('div');  
+        row.className = 'file-card';  
+  
+        const info = document.createElement('div');  
+        info.className = 'file-info';  
+        info.textContent = (i + 1) + '. ' + file.name + ' (' + bytes(file.size) + ')';  
+  
+        const actions = document.createElement('div');  
+        actions.className = 'actions';  
+  
+        const up = document.createElement('button');  
+        up.textContent = '↑';  
+        up.disabled = i === 0;  
+        up.onclick = () => {  
+            [mergeArray[i - 1], mergeArray[i]] =  
+            [mergeArray[i], mergeArray[i - 1]];  
+            renderMerge();  
+        };  
+  
+        const down = document.createElement('button');  
+        down.textContent = '↓';  
+        down.disabled = i === mergeArray.length - 1;  
+        down.onclick = () => {  
+            [mergeArray[i + 1], mergeArray[i]] =  
+            [mergeArray[i], mergeArray[i + 1]];  
+            renderMerge();  
+        };  
+  
+        const remove = document.createElement('button');  
+        remove.textContent = '×';  
+        remove.onclick = () => {  
+            mergeArray.splice(i, 1);  
+            renderMerge();  
+        };  
+  
+        actions.append(up, down, remove);  
+        row.append(info, actions);  
+        list.appendChild(row);  
+    });  
+}  
+  
+$('mergeFiles').addEventListener('change', e => {  
+    const selected = Array.from(e.target.files || []);  
+    const pdfs = selected.filter(f =>  
+        f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf')  
+    );  
+  
+    pdfs.forEach(file => mergeArray.push(file));  
+    renderMerge();  
+    e.target.value = '';  
+  
+    status('mergeStatus',  
+        pdfs.length ? 'PDF files added successfully.' : 'Please select PDF files.',  
+        pdfs.length ? 'success' : 'error'  
+    );  
+});  
+  
+$('addMoreMerge').onclick = () => $('mergeFiles').click();  
+  
+$('mergeBtn').onclick = async () => {  
+    if (mergeArray.length < 2) {  
+        status('mergeStatus', 'Please select at least two PDF files.', 'error');  
+        return;  
+    }  
+  
+    try {  
+        requirePdfLib();  
+        $('mergeBtn').disabled = true;  
+        status('mergeStatus', 'Merging PDF files...');  
+  
+        const output = await PDFLib.PDFDocument.create();  
+  
+        for (const file of mergeArray) {  
+            const doc = await PDFLib.PDFDocument.load(await file.arrayBuffer());  
+            const pages = await output.copyPages(doc, doc.getPageIndices());  
+            pages.forEach(page => output.addPage(page));  
+        }  
+  
+        downloadBlob(  
+            new Blob([await output.save()], {type: 'application/pdf'}),  
+            'merged.pdf'  
+        );  
+  
+        status('mergeStatus', 'PDF merged successfully!', 'success');  
+  
+    } catch (err) {  
+        status('mergeStatus', err.message || 'Merge failed.', 'error');  
+    } finally {  
+        $('mergeBtn').disabled = false;  
+    }  
+};  
+  
+// SPLIT PDF - FIXED  
+  
+$('splitBtn').addEventListener('click', async () => {  
+  
+    const file = $('splitFile').files[0];  
+    const range = $('pageRange').value.trim();  
+    const btn = $('splitBtn');  
+  
+    if (!file) {  
+        status('splitStatus', 'Please select a PDF file.', 'error');  
+        return;  
+    }  
+  
+    if (!file.name.toLowerCase().endsWith('.pdf')) {  
+        status('splitStatus', 'Please select a valid PDF file.', 'error');  
+        return;  
+    }  
+  
+    if (!range) {  
+        status('splitStatus', 'Enter pages such as 1-3 or 1,3,5.', 'error');  
+        return;  
+    }  
+  
+    try {  
+        requirePdfLib();  
+  
+        btn.disabled = true;  
+        status('splitStatus', 'Reading PDF...');  
+  
+        const source = await PDFLib.PDFDocument.load(  
+            await file.arrayBuffer()  
+        );  
+  
+        const total = source.getPageCount();  
+        const indexes = new Set();  
+  
+        for (const part of range.split(',')) {  
+  
+            const p = part.trim();  
+  
+            if (/^\d+$/.test(p)) {  
+                indexes.add(Number(p));  
+            }  
+  
+            else if (/^\d+\s*-\s*\d+$/.test(p)) {  
+  
+                let [start, end] = p.split('-').map(Number);  
+  
+                if (start > end) {  
+                    [start, end] = [end, start];  
+                }  
+  
+                if (end - start > total) {  
+                    throw new Error('Invalid page range.');  
+                }  
+  
+                for (let n = start; n <= end; n++) {  
+                    indexes.add(n);  
+                }  
+            }  
+  
+            else {  
+                throw new Error('Invalid format. Example: 1-3,5');  
+            }  
+        }  
+  
+        const pages = [...indexes].sort((a, b) => a - b);  
+  
+        if (!pages.length || pages.some(n => n < 1 || n > total)) {  
+            throw new Error('Enter page numbers between 1 and ' + total);  
+        }  
+  
+        status('splitStatus', 'Extracting pages...');  
+  
+        const output = await PDFLib.PDFDocument.create();  
+  
+        const copied = await output.copyPages(  
+            source,  
+            pages.map(n => n - 1)  
+        );  
+  
+        copied.forEach(page => output.addPage(page));  
+  
+        const pdfBytes = await output.save();  
+  
+        downloadBlob(  
+            new Blob([pdfBytes], {type: 'application/pdf'}),  
+            'split-pages.pdf'  
+        );  
+  
+        status(  
+            'splitStatus',  
+            'Success! ' + pages.length + ' pages extracted.',  
+            'success'  
+        );  
+  
+    } catch (err) {  
+  
+        console.error(err);  
+  
+        status(  
+            'splitStatus',  
+            err.message || 'Unable to split this PDF.',  
+            'error'  
+        );  
+  
+    } finally {  
+        btn.disabled = false;  
+    }  
+});  
+  
+// JPG TO PDF  
+  
+$('jpgFiles').addEventListener('change', () => {  
+    const files = Array.from($('jpgFiles').files || []);  
+    const list = $('jpgList');  
+  
+    list.innerHTML = '';  
+  
+    files.forEach((file, i) => {  
+        const row = document.createElement('div');  
+        row.className = 'file-card';  
+        row.textContent = (i + 1) + '. ' + file.name;  
+        list.appendChild(row);  
+    });  
+});  
+  
+$('jpgBtn').onclick = async () => {  
+  
+    const files = Array.from($('jpgFiles').files || []);  
+  
+    if (!files.length) {  
+        status('jpgStatus', 'Select JPG or PNG images.', 'error');  
+        return;  
+    }  
+  
+    try {  
+        requirePdfLib();  
+        $('jpgBtn').disabled = true;  
+  
+        const pdf = await PDFLib.PDFDocument.create();  
+  
+        for (const file of files) {  
+            const data = await file.arrayBuffer();  
+  
+            let image;  
+  
+            if (file.type === 'image/png' ||  
+                /\.png$/i.test(file.name)) {  
+                image = await pdf.embedPng(data);  
+            } else if (file.type === 'image/jpeg' ||  
+                /\.jpe?g$/i.test(file.name)) {  
+                image = await pdf.embedJpg(data);  
+            } else {  
+                throw new Error('Only JPG and PNG are supported.');  
+            }  
+  
+            const page = pdf.addPage([image.width, image.height]);  
+  
+            page.drawImage(image, {  
+                x: 0,  
+                y: 0,  
+                width: image.width,  
+                height: image.height  
+            });  
+        }  
+  
+        downloadBlob(  
+            new Blob([await pdf.save()], {type: 'application/pdf'}),  
+            'images.pdf'  
+        );  
+  
+        status('jpgStatus', 'Images converted successfully!', 'success');  
+  
+    } catch (err) {  
+        status('jpgStatus', err.message, 'error');  
+    } finally {  
+        $('jpgBtn').disabled = false;  
+    }  
+};  
+  
+// IMAGE HELPERS  
+  
+function loadImage(file) {  
+    return new Promise((resolve, reject) => {  
+        const url = URL.createObjectURL(file);  
+        const img = new Image();  
+  
+        img.onload = () => {  
+            URL.revokeObjectURL(url);  
+            resolve(img);  
+        };  
+  
+        img.onerror = () => {  
+            URL.revokeObjectURL(url);  
+            reject(new Error('Unable to load image.'));  
+        };  
+  
+        img.src = url;  
+    });  
+}  
+  
+// IMAGE COMPRESSOR  
+  
+$('quality').oninput = () => {  
+    $('qualityValue').textContent = $('quality').value + '%';  
+};  
+  
+$('compressBtn').onclick = async () => {  
+  
+    const file = $('compressFile').files[0];  
+  
+    if (!file) {  
+        status('compressStatus', 'Please select an image.', 'error');  
+        return;  
+    }  
+  
+    try {  
+        $('compressBtn').disabled = true;  
+  
+        const img = await loadImage(file);  
+        const canvas = document.createElement('canvas');  
+  
+        canvas.width = img.naturalWidth;  
+        canvas.height = img.naturalHeight;  
+  
+        canvas.getContext('2d').drawImage(img, 0, 0);  
+  
+        const blob = await new Promise(resolve => {  
+            canvas.toBlob(  
+                resolve,  
+                'image/jpeg',  
+                Number($('quality').value) / 100  
+            );  
+        });  
+  
+        if (!blob) throw new Error('Compression failed.');  
+  
+        downloadBlob(blob, 'compressed-image.jpg');  
+  
+        status(  
+            'compressStatus',  
+            'Compression successful! Original: ' +  
+            bytes(file.size) + ' | New: ' + bytes(blob.size),  
+            'success'  
+        );  
+  
+    } catch (err) {  
+        status('compressStatus', er
