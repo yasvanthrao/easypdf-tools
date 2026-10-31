@@ -3,10 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="EasyPDF Tools - Free online PDF and image tools. Merge, split, convert, compress and resize files.">
-<meta name="theme-color" content="#e5322d">
 
-<title>EasyPDF Tools - Free PDF Tools</title>
+<title>Free PDF Tools Online | Merge, Split & Convert - EasyPDF</title>
+
+<meta name="description" content="Use EasyPDF Tools for free online PDF merging, PDF splitting, JPG to PDF conversion, image compression and image resizing. Simple and easy to use.">
+
+<meta name="theme-color" content="#e5322d">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://easypdf-tools-6zo.pages.dev/">
+
+<meta property="og:title" content="EasyPDF Tools - Free Online PDF Tools">
+<meta property="og:description" content="Merge PDFs, split PDF pages, convert JPG to PDF, compress and resize images for free.">
+<meta property="og:url" content="https://easypdf-tools-6zo.pages.dev/">
+<meta property="og:type" content="website">
 
 <style>
 :root {
@@ -587,7 +597,7 @@ $('mergeBtn').onclick = async () => {
     }
 };
 
-// SPLIT PDF - FIXED
+// SPLIT PDF
 
 $('splitBtn').addEventListener('click', async () => {
 
@@ -628,19 +638,25 @@ $('splitBtn').addEventListener('click', async () => {
             const p = part.trim();
 
             if (/^\d+$/.test(p)) {
-                indexes.add(Number(p));
+                const page = Number(p);
+
+                if (page < 1 || page > total) {
+                    throw new Error('Enter page numbers between 1 and ' + total);
+                }
+
+                indexes.add(page);
             }
 
             else if (/^\d+\s*-\s*\d+$/.test(p)) {
 
                 let [start, end] = p.split('-').map(Number);
 
-                if (start > end) {
-                    [start, end] = [end, start];
+                if (start < 1 || end < 1 || start > total || end > total) {
+                    throw new Error('Enter page numbers between 1 and ' + total);
                 }
 
-                if (end - start > total) {
-                    throw new Error('Invalid page range.');
+                if (start > end) {
+                    [start, end] = [end, start];
                 }
 
                 for (let n = start; n <= end; n++) {
@@ -655,8 +671,8 @@ $('splitBtn').addEventListener('click', async () => {
 
         const pages = [...indexes].sort((a, b) => a - b);
 
-        if (!pages.length || pages.some(n => n < 1 || n > total)) {
-            throw new Error('Enter page numbers between 1 and ' + total);
+        if (!pages.length) {
+            throw new Error('Please enter valid page numbers.');
         }
 
         status('splitStatus', 'Extracting pages...');
@@ -762,7 +778,7 @@ $('jpgBtn').onclick = async () => {
         status('jpgStatus', 'Images converted successfully!', 'success');
 
     } catch (err) {
-        status('jpgStatus', err.message, 'error');
+        status('jpgStatus', err.message || 'Conversion failed.', 'error');
     } finally {
         $('jpgBtn').disabled = false;
     }
@@ -835,7 +851,7 @@ $('compressBtn').onclick = async () => {
         );
 
     } catch (err) {
-        status('compressStatus', err.message, 'error');
+        status('compressStatus', err.message || 'Compression failed.', 'error');
     } finally {
         $('compressBtn').disabled = false;
     }
@@ -870,30 +886,4 @@ $('resizeBtn').onclick = async () => {
         const canvas = document.createElement('canvas');
 
         canvas.width = width;
-        canvas.height = height;
-
-        canvas.getContext('2d').drawImage(
-            img, 0, 0, width, height
-        );
-
-        const blob = await new Promise(resolve => {
-            canvas.toBlob(resolve, 'image/jpeg', 0.92);
-        });
-
-        if (!blob) throw new Error('Resizing failed.');
-
-        downloadBlob(blob, 'resized-image.jpg');
-
-        status('resizeStatus', 'Image resized successfully!', 'success');
-
-    } catch (err) {
-        status('resizeStatus', err.message, 'error');
-    } finally {
-        $('resizeBtn').disabled = false;
-    }
-};
-
-</script>
-
-</body>
-</html>
+       
