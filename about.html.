@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - EasyPDF Tools</title>
+<meta name="description" content="Learn about EasyPDF Tools, a simple online platform for PDF and image tools.">
+<style>
+body {
+    font-family: Arial, sans-serif;
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 20px;
+    line-height: 1.8;
+    color: #333;
+}
+h1, h2 { color: #2563eb; }
+a { color: #2563eb; }
+</style>
+</head>
+<body>
+
+<h1>About EasyPDF Tools</h1>
+
+<p>Welcome to EasyPDF Tools!</p>
+
+<p>EasyPDF Tools is a simple online platform designed to make working with PDF documents and images easier for everyone.</p>
+
+<h2>Our Mission</h2>
+
+<p>Our mission is to provide simple, convenient and accessible online tools that help people manage their everyday PDF and image tasks.</p>
+
+<h2>What We Offer</h2>
+
+<ul>
+<li>Merge PDF files</li>
+<li>Split PDF pages</li>
+<li>Convert JPG and PNG images to PDF</li>
+<li>Compress images</li>
+<li>Resize images</li>
+</ul>
+
+<h2>Why Choose EasyPDF Tools?</h2>
+
+<ul>
+<li>Simple and easy-to-use interface.</li>
+<li>Works on mobile phones and computers.</li>
+<li>No software installation required.</li>
+<li>Designed for convenient file processing.</li>
+</ul>
+
+<h2>Our Commitment</h2>
+
+<p>We aim to improve our website continuously by adding useful tools and making the experience better for our visitors.</p>
+
+<h2>Contact Us</h2>
+
+<p>Have questions or suggestions? Contact us at:</p>
+
+<p>yasvanthrao04042002@gmail.com</p>
+
+<p><a href="index.html">← Back to EasyPDF Tools</a></p>
+
+</body>
+</html>
