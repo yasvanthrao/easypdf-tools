@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyPDF Tools - Free PDF & Image Tools</title>
+<meta name="description" content="Free online PDF and image tools. Merge PDFs, split PDFs, convert images and compress photos easily.">
+
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #202b3c;
+}
+
+header {
+    background: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 12px;
+    font-size: 14px;
+}
+
+.hero {
+    text-align: center;
+    padding: 55px 15px;
+    background: white;
+}
+
+.hero h1 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    color: #687386;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 25px 15px;
+}
+
+.section-title {
+    margin: 25px 0 20px;
+    font-size: 23px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.card {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000008;
+}
+
+.card h3 {
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.card p {
+    color: #687386;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+input, button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 7px;
+}
+
+input {
+    border: 1px solid #ddd;
+    background: white;
+}
+
+button {
+    border: none;
+    background: #2563eb;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: .5;
+}
+
+button:hover {
+    background: #174bb8;
+}
+
+.status {
+    font-size: 13px;
+    margin-top: 12px;
+    overflow-wrap: anywhere;
+}
+
+footer {
+    background: #17243a;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    margin-top: 40px;
+    line-height: 1.8;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">EasyPDF Tools</div>
+    <nav>
+        <a href="#pdf">PDF</a>
+        <a href="#image">Images</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>All Your PDF & Image Tools in One Place</h1>
+    <p>Free, simple and easy-to-use online tools.<br>
+    No software installation required.</p>
+</section>
+
+<main class="container">
+
+<h2 class="section-title" id="pdf">📄 PDF Tools</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Merge PDF</h3>
+<p>Combine multiple PDF files into one document.</p>
+<input type="file" id="mergeFiles" accept=".pdf" multiple>
+<button onclick="mergePDF()">Merge PDF</button>
+<div class="status" id="mergeStatus"></div>
+</div>
+
+<div class="card">
+<h3>Split PDF</h3>
+<p>Extract selected pages from a PDF.</p>
+<input type="file" id="splitFile" accept=".pdf">
+<input type="text" id="pages" placeholder="Pages: 1,3-5">
+<button onclick="splitPDF()">Split PDF</button>
+<div class="status" id="splitStatus"></div>
+</div>
+
+<div class="card">
+<h3>JPG to PDF</h3>
+<p>Convert your JPG or PNG images into PDF.</p>
+<input type="file" id="imagePDF" accept="image/jpeg,image/png" multiple>
+<button onclick="imageToPDF()">Convert to PDF</button>
+<div class="status" id="pdfStatus"></div>
+</div>
+
+</div>
+
+<h2 class="section-title" id="image">🖼️ Image Tools</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Image Compressor</h3>
+<p>Reduce image file size easily.</p>
+<input type="file" id="compressFile" accept="image/*">
+<button onclick="compressImage()">Compress Image</button>
+<div class="status" id="compressStatus"></div>
+</div>
+
+<div class="card">
+<h3>Image Resizer</h3>
+<p>Resize images to your required dimensions.</p>
+<input type="file" id="resizeFile" accept="image/*">
+<input type="number" id="width" placeholder="Width in pixels">
+<input type="number" id="height" placeholder="Height in pixels">
+<button onclick="resizeImage()">Resize Image</button>
+<div class="status" id="resizeStatus"></div>
+</div>
+
+</div>
+</main>
+
+<footer>
+<h3>EasyPDF Tools</h3>
+<p>Free Online PDF and Image Tools</p>
+<p>Simple • Fast • Easy</p>
+<p>© 2026 EasyPDF Tools</p>
+</footer>
+
+<script>
+
+const { PDFDocument } = PDFLib;
+
+function downloadBlob(blob, name) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = name;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+async function mergePDF() {
+    const status = document.getElementById("mergeStatus");
+    try {
+        const files = document.getElementById("mergeFiles").files;
+        if (files.length < 2) throw Error("Select at least two PDFs.");
+
+        const merged = await PDFDocument.create();
+
+        for (const file of files) {
+            const pdf = await PDFDocument.load(await file.arrayBuffer());
+            const pages = await merged.copyPages(pdf, pdf.getPageIndices());
+            pages.forEach(page => merged.addPage(page));
+        }
+
+        const bytes = await merged.save();
+        downloadBlob(new Blob([bytes], {type:"application/pdf"}), "merged.pdf");
+        status.textContent = "PDF merged successfully!";
+    } catch(e) {
+        status.textContent = e.message;
+    }
+}
+
+async function splitPDF() {
+    const status = document.getElementById("splitStatus");
+    try {
+        const file = document.getElementById("splitFile").files[0];
+        if (!file) throw Error("Choose a PDF file.");
+
+        const source = await PDFDocument.load(await file.arrayBuffer());
+        const total = source.getPageCount();
+        const input = document.getElementById("pages").value.trim();
+
+        if (!input) throw Error("Enter page numbers.");
+
+        const indexes = new Set();
+
+        input.split(",").forEach(part => {
+            const range = part.trim().split("-").map(Number);
+            if (range.length > 2 || range.some(n => !Number.isInteger(n))) {
+                throw Error("Invalid page range.");
+            }
+
+            const start = range[0];
+            const end = range.length === 2 ? range[1] : start;
+
+            if (start < 1 || end < start || end > total) {
+                throw Error("Page number is outside the PDF.");
+            }
+
+            for (let i = start; i <= end; i++) indexes.add(i - 1);
+        });
+
+        const output = await PDFDocument.create();
+        const pages = await output.copyPages(source, [...indexes]);
+        pages.forEach(p => output.addPage(p));
+
+        const bytes = await output.save();
+        downloadBlob(new Blob([bytes], {type:"application/pdf"}), "split.pdf");
+        status.textContent = "Pages extracted successfully!";
+    } catch(e) {
+        status.textContent = e.message;
+    }
+}
+
+async function imageToPDF() {
+    const status = document.getElementById("pdfStatus");
+    try {
+        const files = document.getElementById("imagePDF").files;
+        if (!files.length) throw Error("Choose images.");
+
+        const pdf = await PDFDocument.create();
+
+        for (const file of files) {
+            const bytes = await file.arrayBuffer();
+            let img;
+
+            if (file.type === "image/jpeg") {
+                img = await pdf.embedJpg(bytes);
+            } else if (file.type === "image/png") {
+                img = await pdf.embedPng(bytes);
+            } else {
+                throw Error("Only JPG and PNG are supported.");
+            }
+
+            const page = pdf.addPage([img.width, img.height]);
+            page.drawImage(img, {
+                x: 0, y: 0,
+                width: img.width,
+                height: img.height
+            });
+        }
+
+        const bytes = await pdf.save();
+        downloadBlob(new Blob([bytes], {type:"application/pdf"}), "images.pdf");
+        status.textContent = "PDF created successfully!";
+    } catch(e) {
+        status.textContent = e.message;
+    }
+}
+
+function processImage(file, maxWidth, maxHeight, quality, status, name) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        const url = URL.createObjectURL(file);
+
+        img.onload = () => {
+            const ratio = Math.min(
+                maxWidth / img.width,
+                maxHeight / img.height,
+                1
+            );
+
+            const canvas = document.createElement("canvas");
+            canvas.width = Math.max(1, Math.round(img.width * ratio));
+            canvas.height = Math.max(1, Math.round(img.height * ratio));
+
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+            canvas.toBlob(blob => {
+                URL.revokeObjectURL(url);
+                if (!blob) return reject(Error("Image processing failed."));
+
+                downloadBlob(blob, name);
+                status.textContent =
+                    "Completed! New size: " +
+                    (blob.size / 1024).toFixed(1) + " KB";
+                resolve();
+            }, "image/jpeg", quality);
+        };
+
+        img.onerror = () => {
+            URL.revokeObjectURL(url);
+            reject(Error("Cannot open this image."));
+        };
+
+        img.src = url;
+    });
+}
+
+async function compressImage() {
+    const status = document.getElementById("compressStatus");
+    try {
+        const file = document.getElementById("compressFile").files[0];
+        if (!file) throw Error("Choose an image.");
+
+        await processImage(file, 2000, 2000, 0.65, status, "compressed.jpg");
+    } catch(e) {
+        status.textContent = e.message;
+    }
+}
+
+async function resizeImage() {
+    const status = document.getElementById("resizeStatus");
+    try {
+        const file = document.getElementById("resizeFile").files[0];
+        const w = Number(document.getElementById("width").value);
+        const h = Number(document.getElementById("height").value);
+
+        if (!file) throw Error("Choose an image.");
+        if (!w || !h || w < 1 || h < 1 || w > 10000 || h > 10000) {
+            throw Error("Enter valid dimensions (1–10000).");
+        }
+
+        await processImage(file, w, h, 0.85, status, "resized.jpg");
+    } catch(e) {
+        status.textContent = e.message;
+    }
+}
+
+</script>
+
+</body>
+</html>
