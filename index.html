@@ -71,7 +71,7 @@ footer a{color:#555;text-decoration:none;margin:0 8px}
 
 <section class="tool active" id="merge">
 <h2>Merge PDF</h2><p class="tool-desc">Combine multiple PDF files into one document.</p>
-<div class="upload"><div class="icon">馃搫</div><strong>Select PDF files</strong><p>Choose multiple PDF files to combine.</p>
+<div class="upload"><div class="icon">📄</div><strong>Select PDF files</strong><p>Choose multiple PDF files to combine.</p>
 <input type="file" id="mergeFiles" accept=".pdf,application/pdf" multiple>
 </div>
 <div id="mergeList" class="file-list"></div>
@@ -82,7 +82,7 @@ footer a{color:#555;text-decoration:none;margin:0 8px}
 
 <section class="tool" id="split">
 <h2>Split PDF</h2><p class="tool-desc">Extract a page or a range of pages from a PDF.</p>
-<div class="upload"><div class="icon">馃搼</div><strong>Select a PDF file</strong><input type="file" id="splitFile" accept=".pdf,application/pdf"></div>
+<div class="upload"><div class="icon">📑</div><strong>Select a PDF file</strong><input type="file" id="splitFile" accept=".pdf,application/pdf"></div>
 <div class="field"><label for="pageRange">Pages to extract</label><input type="text" id="pageRange" placeholder="Example: 1-3 or 1,3,5"><div class="hint">Use page numbers separated by commas or ranges. Example: 1-3,5</div></div>
 <button type="button" class="primary" id="splitBtn">Split PDF</button>
 <div class="status" id="splitStatus" aria-live="polite"></div>
@@ -90,7 +90,7 @@ footer a{color:#555;text-decoration:none;margin:0 8px}
 
 <section class="tool" id="jpg">
 <h2>JPG to PDF</h2><p class="tool-desc">Convert one or more JPG or PNG images into a PDF.</p>
-<div class="upload"><div class="icon">馃柤锔�</div><strong>Select image files</strong><input type="file" id="jpgFiles" accept="image/jpeg,image/png" multiple></div>
+<div class="upload"><div class="icon">🖼️</div><strong>Select image files</strong><input type="file" id="jpgFiles" accept="image/jpeg,image/png" multiple></div>
 <div id="jpgList" class="file-list"></div>
 <button type="button" class="primary" id="jpgBtn">Convert to PDF</button>
 <div class="status" id="jpgStatus" aria-live="polite"></div>
@@ -98,7 +98,7 @@ footer a{color:#555;text-decoration:none;margin:0 8px}
 
 <section class="tool" id="compress">
 <h2>Image Compressor</h2><p class="tool-desc">Reduce an image's file size by adjusting its quality.</p>
-<div class="upload"><div class="icon">馃棞锔�</div><strong>Select an image</strong><input type="file" id="compressFile" accept="image/*"></div>
+<div class="upload"><div class="icon">🗜️</div><strong>Select an image</strong><input type="file" id="compressFile" accept="image/*"></div>
 <div class="field"><label for="quality">Image quality: <span id="qualityValue">70%</span></label><input type="range" id="quality" min="10" max="95" value="70" style="width:100%"></div>
 <button type="button" class="primary" id="compressBtn">Compress Image</button>
 <div class="status" id="compressStatus" aria-live="polite"></div>
@@ -106,7 +106,7 @@ footer a{color:#555;text-decoration:none;margin:0 8px}
 
 <section class="tool" id="resize">
 <h2>Image Resizer</h2><p class="tool-desc">Resize an image to your preferred dimensions.</p>
-<div class="upload"><div class="icon">馃搻</div><strong>Select an image</strong><input type="file" id="resizeFile" accept="image/*"></div>
+<div class="upload"><div class="icon">📐</div><strong>Select an image</strong><input type="file" id="resizeFile" accept="image/*"></div>
 <div class="field"><label for="resizeWidth">Width (pixels)</label><input type="number" id="resizeWidth" min="1" max="10000" placeholder="Enter width"></div>
 <div class="field"><label for="resizeHeight">Height (pixels)</label><input type="number" id="resizeHeight" min="1" max="10000" placeholder="Enter height"></div>
 <div class="hint">Enter both width and height. The image will be resized to those exact dimensions.</div>
@@ -116,7 +116,7 @@ footer a{color:#555;text-decoration:none;margin:0 8px}
 </main>
 <footer>
 <div><a href="about.html">About Us</a> | <a href="privacy.html">Privacy Policy</a> | <a href="contact.html">Contact Us</a></div>
-<p>漏 2026 EasyPDF Tools</p>
+<p>© 2026 EasyPDF Tools</p>
 </footer>
 
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
@@ -136,15 +136,15 @@ function renderMerge(){
  mergeArray.forEach((file,i)=>{
   const row=document.createElement('div');row.className='file-card';
   const num=document.createElement('span');num.className='file-num';num.textContent=i+1;
-  const icon=document.createElement('span');icon.className='file-icon';icon.textContent='馃搫';
+  const icon=document.createElement('span');icon.className='file-icon';icon.textContent='📄';
   const info=document.createElement('div');info.className='file-info';
   const name=document.createElement('div');name.className='file-name';name.textContent=file.name;
   const size=document.createElement('div');size.className='file-size';size.textContent=bytes(file.size);
   info.append(name,size);
   const actions=document.createElement('div');actions.className='actions';
-  const up=document.createElement('button');up.type='button';up.textContent='鈫�';up.setAttribute('aria-label','Move up');up.disabled=i===0;up.onclick=()=>{[mergeArray[i-1],mergeArray[i]]=[mergeArray[i],mergeArray[i-1]];renderMerge();};
-  const down=document.createElement('button');down.type='button';down.textContent='鈫�';down.setAttribute('aria-label','Move down');down.disabled=i===mergeArray.length-1;down.onclick=()=>{[mergeArray[i+1],mergeArray[i]]=[mergeArray[i],mergeArray[i+1]];renderMerge();};
-  const remove=document.createElement('button');remove.type='button';remove.textContent='脳';remove.setAttribute('aria-label','Remove file');remove.onclick=()=>{mergeArray.splice(i,1);renderMerge();};
+  const up=document.createElement('button');up.type='button';up.textContent='↑';up.setAttribute('aria-label','Move up');up.disabled=i===0;up.onclick=()=>{[mergeArray[i-1],mergeArray[i]]=[mergeArray[i],mergeArray[i-1]];renderMerge();};
+  const down=document.createElement('button');down.type='button';down.textContent='↓';down.setAttribute('aria-label','Move down');down.disabled=i===mergeArray.length-1;down.onclick=()=>{[mergeArray[i+1],mergeArray[i]]=[mergeArray[i],mergeArray[i+1]];renderMerge();};
+  const remove=document.createElement('button');remove.type='button';remove.textContent='×';remove.setAttribute('aria-label','Remove file');remove.onclick=()=>{mergeArray.splice(i,1);renderMerge();};
   actions.append(up,down,remove);row.append(num,icon,info,actions);list.appendChild(row);
  });
 }
@@ -204,7 +204,7 @@ $('compressBtn').addEventListener('click',async()=>{
 $('resizeBtn').addEventListener('click',async()=>{
  const file=$('resizeFile').files[0],w=Number($('resizeWidth').value),h=Number($('resizeHeight').value);
  if(!file){status('resizeStatus','Please select an image.','error');return;}if(!Number.isInteger(w)||!Number.isInteger(h)||w<1||h<1||w>10000||h>10000){status('resizeStatus','Enter a valid width and height between 1 and 10000 pixels.','error');return;}
- try{status('resizeStatus','Resizing image...');$('resizeBtn').disabled=true;const img=await loadImage(file);const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,w,h);const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',0.92));if(!blob)throw new Error('Image resizing failed.');downloadBlob(blob,'resized-image.jpg');status('resizeStatus','Success! Resized image downloaded ('+w+' 脳 '+h+' pixels).','success');
+ try{status('resizeStatus','Resizing image...');$('resizeBtn').disabled=true;const img=await loadImage(file);const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,w,h);const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',0.92));if(!blob)throw new Error('Image resizing failed.');downloadBlob(blob,'resized-image.jpg');status('resizeStatus','Success! Resized image downloaded ('+w+' × '+h+' pixels).','success');
  }catch(err){status('resizeStatus',err.message,'error');}finally{$('resizeBtn').disabled=false;}
 });
 </script>
