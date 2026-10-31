@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://easypdf-tools-6zo.pages.dev/sitemap.xml
