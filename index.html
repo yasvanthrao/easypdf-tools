@@ -1,15 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta name="google-site-verification" content="q2Kp0bfWr880ibkUZrfXlxP5cRVdqS4v-GBk12slOc8" />
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="EasyPDF Tools - Free online PDF and image tools. Merge, split, convert, compress and resize files.">
+
+<meta name="google-site-verification" content="q2Kp0bfWr880ibkUZrfXlxP5cRVdqS4v-GBk12slOc8">
+
+<meta name="description" content="EasyPDF Tools offers free online PDF and image tools. Merge PDF files, split PDF pages, convert JPG to PDF, compress images and resize images easily.">
+
+<meta name="robots" content="index, follow">
+
 <meta name="theme-color" content="#e5322d">
 
-<title>EasyPDF Tools - Free PDF Tools</title>
+<link rel="canonical" href="https://easypdf-tools-6zo.pages.dev/">
+
+<meta property="og:title" content="EasyPDF Tools - Free Online PDF and Image Tools">
+<meta property="og:description" content="Merge, split, convert, compress and resize files with free online tools.">
+<meta property="og:url" content="https://easypdf-tools-6zo.pages.dev/">
+<meta property="og:type" content="website">
+
+<title>EasyPDF Tools - Free PDF Merger, Splitter and Image Tools</title>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "EasyPDF Tools",
+  "url": "https://easypdf-tools-6zo.pages.dev/",
+  "description": "Free online PDF and image tools for merging, splitting, converting, compressing and resizing files.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript and a modern web browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
 
 <style>
+
 :root {
     --red: #e5322d;
     --dark: #252525;
@@ -27,6 +60,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     color: var(--dark);
     background: var(--bg);
+    line-height: 1.6;
 }
 
 header {
@@ -59,6 +93,7 @@ h1 {
     text-align: center;
     font-size: 28px;
     margin: 10px 0;
+    line-height: 1.3;
 }
 
 .intro {
@@ -248,6 +283,35 @@ button:disabled {
     margin-top: 12px;
 }
 
+/* SEO CONTENT */
+
+.content-section {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px;
+    margin-top: 25px;
+    box-shadow: 0 4px 18px #00000008;
+}
+
+.content-section h2 {
+    color: var(--dark);
+    margin-top: 20px;
+}
+
+.content-section h2:first-child {
+    margin-top: 0;
+}
+
+.content-section h3 {
+    font-size: 17px;
+    margin-top: 20px;
+}
+
+.content-section p {
+    color: #555;
+}
+
 footer {
     text-align: center;
     padding: 25px 12px;
@@ -264,13 +328,22 @@ footer a {
     margin: 0 8px;
 }
 
+footer a:hover {
+    color: var(--red);
+}
+
 @media(max-width:520px) {
+
     main {
         margin-top: 18px;
     }
 
     .tool {
         padding: 16px;
+    }
+
+    .content-section {
+        padding: 17px;
     }
 
     .tools-nav button {
@@ -281,7 +354,9 @@ footer a {
     .file-card {
         align-items: flex-start;
     }
+
 }
+
 </style>
 </head>
 
@@ -294,15 +369,21 @@ footer a {
 
 <main>
 
-<h1>Free Online PDF Tools</h1>
-<p class="intro">Choose your tool and process files directly in your browser.</p>
+<h1>Free Online PDF and Image Tools</h1>
+
+<p class="intro">
+Use EasyPDF Tools to merge, split, convert, compress and resize files.
+Free online tools that work directly in your browser.
+</p>
 
 <nav class="tools-nav">
+
 <button class="active" data-tool="merge">Merge PDF</button>
 <button data-tool="split">Split PDF</button>
 <button data-tool="jpg">JPG to PDF</button>
 <button data-tool="compress">Image Compressor</button>
 <button data-tool="resize">Image Resizer</button>
+
 </nav>
 
 <!-- MERGE PDF -->
@@ -310,7 +391,10 @@ footer a {
 <section class="tool active" id="merge">
 
 <h2>Merge PDF</h2>
-<p class="tool-desc">Combine multiple PDF files into one PDF.</p>
+
+<p class="tool-desc">
+Combine multiple PDF files into one PDF document.
+</p>
 
 <div class="upload">
 <div class="icon">📄</div>
@@ -325,6 +409,7 @@ footer a {
 </div>
 
 <button class="primary" id="mergeBtn">Merge PDF</button>
+
 <div class="status" id="mergeStatus"></div>
 
 </section>
@@ -334,7 +419,10 @@ footer a {
 <section class="tool" id="split">
 
 <h2>Split PDF</h2>
-<p class="tool-desc">Extract individual pages or multiple page ranges from your PDF.</p>
+
+<p class="tool-desc">
+Extract individual pages or multiple page ranges from your PDF.
+</p>
 
 <div class="upload">
 <div class="icon">📑</div>
@@ -343,14 +431,19 @@ footer a {
 </div>
 
 <div class="field">
+
 <label for="pageRange">Pages to Extract</label>
+
 <input type="text" id="pageRange" placeholder="Example: 1-3,5,7-9">
+
 <div class="hint">
 Examples: 1 | 1-3 | 1,3,5 | 1-3,5,7-9
 </div>
+
 </div>
 
 <button class="primary" id="splitBtn">Split PDF</button>
+
 <div class="status" id="splitStatus"></div>
 
 </section>
@@ -360,7 +453,10 @@ Examples: 1 | 1-3 | 1,3,5 | 1-3,5,7-9
 <section class="tool" id="jpg">
 
 <h2>JPG to PDF</h2>
-<p class="tool-desc">Convert JPG and PNG images into PDF.</p>
+
+<p class="tool-desc">
+Convert JPG and PNG images into a PDF document.
+</p>
 
 <div class="upload">
 <div class="icon">🖼️</div>
@@ -371,6 +467,7 @@ Examples: 1 | 1-3 | 1,3,5 | 1-3,5,7-9
 <div id="jpgList" class="file-list"></div>
 
 <button class="primary" id="jpgBtn">Convert to PDF</button>
+
 <div class="status" id="jpgStatus"></div>
 
 </section>
@@ -380,7 +477,10 @@ Examples: 1 | 1-3 | 1,3,5 | 1-3,5,7-9
 <section class="tool" id="compress">
 
 <h2>Image Compressor</h2>
-<p class="tool-desc">Reduce image file size.</p>
+
+<p class="tool-desc">
+Reduce image file size by adjusting image quality.
+</p>
 
 <div class="upload">
 <div class="icon">🗜️</div>
@@ -389,11 +489,17 @@ Examples: 1 | 1-3 | 1,3,5 | 1-3,5,7-9
 </div>
 
 <div class="field">
-<label>Image Quality: <span id="qualityValue">70%</span></label>
+
+<label>
+Image Quality: <span id="qualityValue">70%</span>
+</label>
+
 <input type="range" id="quality" min="10" max="95" value="70" style="width:100%">
+
 </div>
 
 <button class="primary" id="compressBtn">Compress Image</button>
+
 <div class="status" id="compressStatus"></div>
 
 </section>
@@ -403,7 +509,10 @@ Examples: 1 | 1-3 | 1,3,5 | 1-3,5,7-9
 <section class="tool" id="resize">
 
 <h2>Image Resizer</h2>
-<p class="tool-desc">Resize images to your preferred dimensions.</p>
+
+<p class="tool-desc">
+Resize images to your preferred dimensions in pixels.
+</p>
 
 <div class="upload">
 <div class="icon">📐</div>
@@ -412,34 +521,141 @@ Examples: 1 | 1-3 | 1,3,5 | 1-3,5,7-9
 </div>
 
 <div class="field">
-<label>Width (pixels)</label>
+
+<label for="resizeWidth">Width (pixels)</label>
+
 <input type="number" id="resizeWidth" min="1" max="10000" placeholder="Enter width">
+
 </div>
 
 <div class="field">
-<label>Height (pixels)</label>
+
+<label for="resizeHeight">Height (pixels)</label>
+
 <input type="number" id="resizeHeight" min="1" max="10000" placeholder="Enter height">
+
 </div>
 
 <button class="primary" id="resizeBtn">Resize Image</button>
+
 <div class="status" id="resizeStatus"></div>
+
+</section>
+
+<!-- SEO CONTENT -->
+
+<section class="content-section">
+
+<h2>Free Online PDF and Image Tools</h2>
+
+<p>
+Welcome to EasyPDF Tools. Our website provides simple online tools
+to help you manage PDF documents and images. You can use these tools
+from your mobile phone, tablet or computer without installing
+additional software.
+</p>
+
+<h3>1. Merge PDF Files Online</h3>
+
+<p>
+The Merge PDF tool helps you combine multiple PDF documents into
+a single PDF file. Select two or more PDF files, arrange their order
+and click the Merge PDF button.
+</p>
+
+<h3>2. Split PDF Files Online</h3>
+
+<p>
+Use the Split PDF tool to extract selected pages from a PDF document.
+Enter individual page numbers or page ranges. For example, enter
+1-3,5 to extract pages 1, 2, 3 and 5.
+</p>
+
+<h3>3. Convert JPG to PDF</h3>
+
+<p>
+Convert JPG and PNG images into a PDF document. Select multiple
+images to place them into one PDF file.
+</p>
+
+<h3>4. Compress Images Online</h3>
+
+<p>
+The Image Compressor helps reduce image file size. Select an image
+and adjust the quality setting to create a smaller JPEG image.
+</p>
+
+<h3>5. Resize Images Online</h3>
+
+<p>
+Change the dimensions of an image using the Image Resizer.
+Enter your preferred width and height in pixels and download
+the resized image.
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Are EasyPDF Tools free?</h3>
+
+<p>
+Yes. EasyPDF Tools provides free online PDF and image processing tools.
+</p>
+
+<h3>Do I need to install software?</h3>
+
+<p>
+No. You can use the tools directly in a modern web browser.
+</p>
+
+<h3>Can I use EasyPDF Tools on my mobile phone?</h3>
+
+<p>
+Yes. The website is designed to work on mobile phones,
+tablets and computers.
+</p>
+
+<h3>Can I merge multiple PDF files?</h3>
+
+<p>
+Yes. Select two or more PDF files and use the Merge PDF tool
+to combine them into one document.
+</p>
+
+<h3>Can I extract specific PDF pages?</h3>
+
+<p>
+Yes. Use the Split PDF tool and enter the page numbers
+or ranges you want to extract.
+</p>
+
+<h3>Are my files uploaded to a server?</h3>
+
+<p>
+The tools on this page process files in your browser using
+JavaScript. The website does not send your selected files
+to its own server for processing.
+</p>
 
 </section>
 
 </main>
 
 <footer>
+
 <div>
 <a href="about.html">About Us</a> |
 <a href="privacy.html">Privacy Policy</a> |
 <a href="contact.html">Contact Us</a>
 </div>
-<p>© 2026 EasyPDF Tools</p>
+
+<p>© 2026 EasyPDF Tools. All rights reserved.</p>
+
 </footer>
 
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 
 <script>
+
 'use strict';
 
 const $ = id => document.getElementById(id);
@@ -457,34 +673,46 @@ function bytes(n) {
 }
 
 function downloadBlob(blob, name) {
+
     const url = URL.createObjectURL(blob);
+
     const a = document.createElement('a');
+
     a.href = url;
     a.download = name;
+
     document.body.appendChild(a);
+
     a.click();
     a.remove();
+
     setTimeout(() => URL.revokeObjectURL(url), 10000);
 }
 
 function requirePdfLib() {
+
     if (!window.PDFLib) {
         throw new Error('PDF library failed to load. Check your internet connection and refresh.');
     }
+
 }
 
 // NAVIGATION
 
 document.querySelectorAll('.tools-nav button').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('.tools-nav button').forEach(b =>
-            b.classList.toggle('active', b === btn)
-        );
 
-        document.querySelectorAll('.tool').forEach(s =>
-            s.classList.toggle('active', s.id === btn.dataset.tool)
-        );
+    btn.addEventListener('click', () => {
+
+        document.querySelectorAll('.tools-nav button').forEach(b => {
+            b.classList.toggle('active', b === btn);
+        });
+
+        document.querySelectorAll('.tool').forEach(s => {
+            s.classList.toggle('active', s.id === btn.dataset.tool);
+        });
+
     });
+
 });
 
 // MERGE PDF
@@ -492,129 +720,193 @@ document.querySelectorAll('.tools-nav button').forEach(btn => {
 let mergeArray = [];
 
 function renderMerge() {
+
     const list = $('mergeList');
+
     list.innerHTML = '';
 
     mergeArray.forEach((file, i) => {
+
         const row = document.createElement('div');
+
         row.className = 'file-card';
 
         const info = document.createElement('div');
+
         info.className = 'file-info';
-        info.textContent = (i + 1) + '. ' + file.name + ' (' + bytes(file.size) + ')';
+
+        info.textContent =
+            (i + 1) + '. ' + file.name + ' (' + bytes(file.size) + ')';
 
         const actions = document.createElement('div');
+
         actions.className = 'actions';
 
         const up = document.createElement('button');
+
         up.textContent = '↑';
+
         up.disabled = i === 0;
+
         up.onclick = () => {
+
             [mergeArray[i - 1], mergeArray[i]] =
             [mergeArray[i], mergeArray[i - 1]];
+
             renderMerge();
+
         };
 
         const down = document.createElement('button');
+
         down.textContent = '↓';
+
         down.disabled = i === mergeArray.length - 1;
+
         down.onclick = () => {
+
             [mergeArray[i + 1], mergeArray[i]] =
             [mergeArray[i], mergeArray[i + 1]];
+
             renderMerge();
+
         };
 
         const remove = document.createElement('button');
+
         remove.textContent = '×';
+
         remove.onclick = () => {
+
             mergeArray.splice(i, 1);
+
             renderMerge();
+
         };
 
         actions.append(up, down, remove);
+
         row.append(info, actions);
+
         list.appendChild(row);
+
     });
+
 }
 
 $('mergeFiles').addEventListener('change', e => {
+
     const selected = Array.from(e.target.files || []);
+
     const pdfs = selected.filter(f =>
-        f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf')
+        f.type === 'application/pdf' ||
+        f.name.toLowerCase().endsWith('.pdf')
     );
 
     pdfs.forEach(file => mergeArray.push(file));
+
     renderMerge();
+
     e.target.value = '';
 
-    status('mergeStatus',
+    status(
+        'mergeStatus',
         pdfs.length ? 'PDF files added successfully.' : 'Please select PDF files.',
         pdfs.length ? 'success' : 'error'
     );
+
 });
 
 $('addMoreMerge').onclick = () => $('mergeFiles').click();
 
 $('mergeBtn').onclick = async () => {
+
     if (mergeArray.length < 2) {
+
         status('mergeStatus', 'Please select at least two PDF files.', 'error');
+
         return;
+
     }
 
     try {
+
         requirePdfLib();
+
         $('mergeBtn').disabled = true;
+
         status('mergeStatus', 'Merging PDF files...');
 
         const output = await PDFLib.PDFDocument.create();
 
         for (const file of mergeArray) {
-            const doc = await PDFLib.PDFDocument.load(await file.arrayBuffer());
-            const pages = await output.copyPages(doc, doc.getPageIndices());
+
+            const doc = await PDFLib.PDFDocument.load(
+                await file.arrayBuffer()
+            );
+
+            const pages = await output.copyPages(
+                doc,
+                doc.getPageIndices()
+            );
+
             pages.forEach(page => output.addPage(page));
+
         }
 
         downloadBlob(
-            new Blob([await output.save()], {type: 'application/pdf'}),
+            new Blob([await output.save()], {
+                type: 'application/pdf'
+            }),
             'merged.pdf'
         );
 
         status('mergeStatus', 'PDF merged successfully!', 'success');
 
     } catch (err) {
+
         status('mergeStatus', err.message || 'Merge failed.', 'error');
+
     } finally {
+
         $('mergeBtn').disabled = false;
+
     }
+
 };
 
-// SPLIT PDF - FIXED
+// SPLIT PDF
 
 $('splitBtn').addEventListener('click', async () => {
 
     const file = $('splitFile').files[0];
+
     const range = $('pageRange').value.trim();
+
     const btn = $('splitBtn');
 
     if (!file) {
-        status('splitStatus', 'Please select a PDF file.', 'error');
-        return;
-    }
 
-    if (!file.name.toLowerCase().endsWith('.pdf')) {
-        status('splitStatus', 'Please select a valid PDF file.', 'error');
+        status('splitStatus', 'Please select a PDF file.', 'error');
+
         return;
+
     }
 
     if (!range) {
+
         status('splitStatus', 'Enter pages such as 1-3 or 1,3,5.', 'error');
+
         return;
+
     }
 
     try {
+
         requirePdfLib();
 
         btn.disabled = true;
+
         status('splitStatus', 'Reading PDF...');
 
         const source = await PDFLib.PDFDocument.load(
@@ -622,6 +914,7 @@ $('splitBtn').addEventListener('click', async () => {
         );
 
         const total = source.getPageCount();
+
         const indexes = new Set();
 
         for (const part of range.split(',')) {
@@ -629,10 +922,10 @@ $('splitBtn').addEventListener('click', async () => {
             const p = part.trim();
 
             if (/^\d+$/.test(p)) {
-                indexes.add(Number(p));
-            }
 
-            else if (/^\d+\s*-\s*\d+$/.test(p)) {
+                indexes.add(Number(p));
+
+            } else if (/^\d+\s*-\s*\d+$/.test(p)) {
 
                 let [start, end] = p.split('-').map(Number);
 
@@ -640,24 +933,28 @@ $('splitBtn').addEventListener('click', async () => {
                     [start, end] = [end, start];
                 }
 
-                if (end - start > total) {
-                    throw new Error('Invalid page range.');
+                if (start < 1 || end > total) {
+                    throw new Error('Page numbers must be between 1 and ' + total);
                 }
 
                 for (let n = start; n <= end; n++) {
                     indexes.add(n);
                 }
+
+            } else {
+
+                throw new Error('Invalid format. Example: 1-3,5');
+
             }
 
-            else {
-                throw new Error('Invalid format. Example: 1-3,5');
-            }
         }
 
         const pages = [...indexes].sort((a, b) => a - b);
 
         if (!pages.length || pages.some(n => n < 1 || n > total)) {
-            throw new Error('Enter page numbers between 1 and ' + total);
+
+            throw new Error('Enter valid page numbers between 1 and ' + total);
+
         }
 
         status('splitStatus', 'Extracting pages...');
@@ -674,7 +971,9 @@ $('splitBtn').addEventListener('click', async () => {
         const pdfBytes = await output.save();
 
         downloadBlob(
-            new Blob([pdfBytes], {type: 'application/pdf'}),
+            new Blob([pdfBytes], {
+                type: 'application/pdf'
+            }),
             'split-pages.pdf'
         );
 
@@ -695,24 +994,35 @@ $('splitBtn').addEventListener('click', async () => {
         );
 
     } finally {
+
         btn.disabled = false;
+
     }
+
 });
 
 // JPG TO PDF
 
 $('jpgFiles').addEventListener('change', () => {
+
     const files = Array.from($('jpgFiles').files || []);
+
     const list = $('jpgList');
 
     list.innerHTML = '';
 
     files.forEach((file, i) => {
+
         const row = document.createElement('div');
+
         row.className = 'file-card';
+
         row.textContent = (i + 1) + '. ' + file.name;
+
         list.appendChild(row);
+
     });
+
 });
 
 $('jpgBtn').onclick = async () => {
@@ -720,181 +1030,19 @@ $('jpgBtn').onclick = async () => {
     const files = Array.from($('jpgFiles').files || []);
 
     if (!files.length) {
+
         status('jpgStatus', 'Select JPG or PNG images.', 'error');
+
         return;
+
     }
 
     try {
+
         requirePdfLib();
+
         $('jpgBtn').disabled = true;
 
         const pdf = await PDFLib.PDFDocument.create();
 
-        for (const file of files) {
-            const data = await file.arrayBuffer();
-
-            let image;
-
-            if (file.type === 'image/png' ||
-                /\.png$/i.test(file.name)) {
-                image = await pdf.embedPng(data);
-            } else if (file.type === 'image/jpeg' ||
-                /\.jpe?g$/i.test(file.name)) {
-                image = await pdf.embedJpg(data);
-            } else {
-                throw new Error('Only JPG and PNG are supported.');
-            }
-
-            const page = pdf.addPage([image.width, image.height]);
-
-            page.drawImage(image, {
-                x: 0,
-                y: 0,
-                width: image.width,
-                height: image.height
-            });
-        }
-
-        downloadBlob(
-            new Blob([await pdf.save()], {type: 'application/pdf'}),
-            'images.pdf'
-        );
-
-        status('jpgStatus', 'Images converted successfully!', 'success');
-
-    } catch (err) {
-        status('jpgStatus', err.message, 'error');
-    } finally {
-        $('jpgBtn').disabled = false;
-    }
-};
-
-// IMAGE HELPERS
-
-function loadImage(file) {
-    return new Promise((resolve, reject) => {
-        const url = URL.createObjectURL(file);
-        const img = new Image();
-
-        img.onload = () => {
-            URL.revokeObjectURL(url);
-            resolve(img);
-        };
-
-        img.onerror = () => {
-            URL.revokeObjectURL(url);
-            reject(new Error('Unable to load image.'));
-        };
-
-        img.src = url;
-    });
-}
-
-// IMAGE COMPRESSOR
-
-$('quality').oninput = () => {
-    $('qualityValue').textContent = $('quality').value + '%';
-};
-
-$('compressBtn').onclick = async () => {
-
-    const file = $('compressFile').files[0];
-
-    if (!file) {
-        status('compressStatus', 'Please select an image.', 'error');
-        return;
-    }
-
-    try {
-        $('compressBtn').disabled = true;
-
-        const img = await loadImage(file);
-        const canvas = document.createElement('canvas');
-
-        canvas.width = img.naturalWidth;
-        canvas.height = img.naturalHeight;
-
-        canvas.getContext('2d').drawImage(img, 0, 0);
-
-        const blob = await new Promise(resolve => {
-            canvas.toBlob(
-                resolve,
-                'image/jpeg',
-                Number($('quality').value) / 100
-            );
-        });
-
-        if (!blob) throw new Error('Compression failed.');
-
-        downloadBlob(blob, 'compressed-image.jpg');
-
-        status(
-            'compressStatus',
-            'Compression successful! Original: ' +
-            bytes(file.size) + ' | New: ' + bytes(blob.size),
-            'success'
-        );
-
-    } catch (err) {
-        status('compressStatus', err.message, 'error');
-    } finally {
-        $('compressBtn').disabled = false;
-    }
-};
-
-// IMAGE RESIZER
-
-$('resizeBtn').onclick = async () => {
-
-    const file = $('resizeFile').files[0];
-
-    const width = Number($('resizeWidth').value);
-    const height = Number($('resizeHeight').value);
-
-    if (!file) {
-        status('resizeStatus', 'Please select an image.', 'error');
-        return;
-    }
-
-    if (!Number.isInteger(width) || !Number.isInteger(height) ||
-        width < 1 || height < 1 ||
-        width > 10000 || height > 10000) {
-
-        status('resizeStatus', 'Enter valid width and height.', 'error');
-        return;
-    }
-
-    try {
-        $('resizeBtn').disabled = true;
-
-        const img = await loadImage(file);
-        const canvas = document.createElement('canvas');
-
-        canvas.width = width;
-        canvas.height = height;
-
-        canvas.getContext('2d').drawImage(
-            img, 0, 0, width, height
-        );
-
-        const blob = await new Promise(resolve => {
-            canvas.toBlob(resolve, 'image/jpeg', 0.92);
-        });
-
-        if (!blob) throw new Error('Resizing failed.');
-
-        downloadBlob(blob, 'resized-image.jpg');
-
-        status('resizeStatus', 'Image resized successfully!', 'success');
-
-    } catch (err) {
-        status('resizeStatus', err.message, 'error');
-    } finally {
-        $('resizeBtn').disabled = false;
-    }
-};
-
-</script>
-
-</body>
-</html>
+        for (const file of fil
